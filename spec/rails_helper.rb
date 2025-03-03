@@ -76,4 +76,7 @@ RSpec.configure do |config|
       driven_by(:selenium_chrome_headless)
     end
   end
+  #
+  # FactoryBotで省略記法を使うための設定
+  config.include FactoryBot::Syntax::Methods
 end
