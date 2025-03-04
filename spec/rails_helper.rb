@@ -79,4 +79,12 @@ RSpec.configure do |config|
   #
   # FactoryBotで省略記法を使うための設定
   config.include FactoryBot::Syntax::Methods
+  #
+  # SimpleCovの設定
+  if ENV["CIRCLE_ARTIFACTS"]
+    dir = File.join(ENV["CIRCLE_ARTIFACTS"], "coverage")
+    SimpleCov.coverage_dir(dir)
+  end
+
+  SimpleCov.start
 end
