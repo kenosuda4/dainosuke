@@ -32,3 +32,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# SimpleCovで生成されたファイルを除外
+/coverage
