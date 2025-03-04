@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+["鉛筆", "消しゴム", "ノート", "定規", "電卓"].each do |name|
+  Product.find_or_create_by!(name:)
+  puts "Created product: #{name}"
+end
