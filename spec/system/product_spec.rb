@@ -24,9 +24,9 @@ RSpec.describe "products", type: :system do
 
     it "プロダクト削除ができること" do
       expect do
-        click_on "Delete"
+        click_on "商品の削除"
         page.driver.browser.switch_to.alert.accept
-        expect(page).to have_content("Products")
+        expect(page).to have_content("商品一覧")
       end.to change(Product, :count).by(-1)
     end
   end
@@ -37,10 +37,10 @@ RSpec.describe "products", type: :system do
         visit "/products/new"
 
         expect do
-          fill_in "Name", with: "Product Name"
-          click_on "Create Product"
+          fill_in "名前", with: "新規登録した商品"
+          click_on "登録する"
 
-          expect(page).to have_content("Product Name")
+          expect(page).to have_content("新規登録した商品")
         end.to change(Product, :count).by(1)
       end
     end
@@ -50,10 +50,10 @@ RSpec.describe "products", type: :system do
         visit "/products/new"
 
         expect do
-          fill_in "Name", with: ""
-          click_on "Create Product"
+          fill_in "名前", with: ""
+          click_on "登録する"
 
-          expect(page).to have_content("Name can't be blank")
+          expect(page).to have_content("名前を入力してください")
         end.not_to change(Product, :count)
       end
     end
@@ -67,11 +67,11 @@ RSpec.describe "products", type: :system do
         visit "/products/#{product.id}/edit"
 
         expect do
-          fill_in "Name", with: "Updated Product Name"
-          click_on "Update Product"
+          fill_in "名前", with: "更新した商品"
+          click_on "更新する"
 
-          expect(page).to have_content("Updated Product Name")
-        end.to change { Product.find(product.id).name }.from(product.name).to("Updated Product Name")
+          expect(page).to have_content("更新した商品")
+        end.to change { Product.find(product.id).name }.from(product.name).to("更新した商品")
       end
     end
 
@@ -80,10 +80,10 @@ RSpec.describe "products", type: :system do
         visit "/products/#{product.id}/edit"
 
         expect do
-          fill_in "Name", with: ""
-          click_on "Update Product"
+          fill_in "名前", with: ""
+          click_on "更新する"
 
-          expect(page).to have_content("Name can't be blank")
+          expect(page).to have_content("名前を入力してください")
         end.not_to(change { Product.find(product.id).name })
       end
     end
