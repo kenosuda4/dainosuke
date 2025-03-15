@@ -4,8 +4,6 @@
 
 <div id="products">
   <% @products.each do |product| %>
-    <div>
-      <%= link_to product.name, product %>
-    </div>
+      <%= render 'form', product: product %>
   <% end %>
 </div>

@@ -1,17 +1,10 @@
-<%= form_with model: product do |form| %>
-  <div>
-    <div>
-      <%= form.label :name %>
-    </div>
-    <% @product.errors.full_messages_for(:name).each do |msg| %>
-      <%= msg %><br>
-    <% end %>
-    <div>
-      <%= form.text_field :name %>
-    </div>
-  </div>
-
-  <div>
+<%= form_with model: product, data: { turbo_frame: dom_id(product) } do |form| %>
+  <%= turbo_frame_tag "product_name_#{product.id}" do %>
+    <div class="product-row" id="product_<%= product.id %>">
+    <span id="product_name_<%= product.id %>"><%= product.name %></span>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
     <%= form.submit %>
-  </div>
+    </div>
+  <% end %>
 <% end %>
